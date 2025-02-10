@@ -1,0 +1,392 @@
+/*基礎設置*/
+html, body {
+  line-height: 1.5;
+  font-family: 'Noto Sans',sans-serif;
+  font-weight: bold;
+}
+a {
+  color: black;
+}
+.wrap {
+  max-width: 1110px;
+  margin: 0 auto;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+h3 {
+  font-size: 1.75rem;
+  text-align: center;
+}
+/*Nav區塊*/
+.logo {
+  font-size: 1.5rem;
+}
+.topBar-menu {
+  font-size: 1.25rem;
+  display: flex;
+}
+.topBar-menu a {
+  display: block;
+  padding: 36px 24px;
+}
+.menuToggle {
+  display: none;
+}
+.topBar {
+  border-bottom: 40px solid #000000;
+  margin-bottom: 30px;
+}
+.topBar a:hover{
+  color: #6A33F8;
+}
+
+.topBar .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*banner區塊*/
+.banner .carousel {
+  position: relative;
+  min-height: 420px ;
+  background: url("../res/banner1.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 60px;
+}
+.slogan {
+  position: absolute;
+  left: 52px;
+  bottom: 48px;
+  color: #FFFFFF;
+  font-size: 2rem;
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.advantages {
+  margin-bottom: 28px;
+}
+.advantages-list {
+  display: flex;
+  justify-content: space-between;
+}
+.advantages-list li:nth-child(2) {
+  margin: 0 30px;
+}
+.advantages-list p {
+  text-align: center;
+  margin-top: 8px;
+}
+
+/*商品比較區塊*/
+.commodityCompare {
+  margin-top: 60px;
+  background-color: #F8F8F8;
+  padding: 48px 0;
+}
+.compareTable {
+  width: 65%;
+  min-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 32px;
+}
+.compareTable tr td:first-child,.compareTable th {
+  font-size: 1.25rem;
+  padding: 12px 0;
+}
+.compareTable tr {
+  border-bottom: 1px solid #B9B9B9;
+}
+.compareTable th:nth-child(2) {
+  margin: 0 30px;
+}
+.checkIcon {
+  color: #6A33FF;
+  font-size: 40px;
+  vertical-align: middle;
+}
+.overflowWrap {
+  overflow: auto;
+}
+.textMuted {
+  color: #797979;
+}
+/*好評推薦區塊*/
+.comment {
+  min-height: 424px;
+  background-color: #301E5F;
+}
+.comment .section-title{
+  color: #FFFFFF;
+  padding-top: 60px;
+  margin-bottom: 32px;
+}
+.comment-list {
+  overflow: hidden;
+}
+.top-list {
+  margin-left: 95px;
+}
+.comment-card {
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  min-width: 350PX;
+}
+.comment-card img {
+  display: block;
+  max-width: 95px;
+}
+.comment-content {
+  margin-left: 16px;
+}
+.comment-card-head {
+  display: flex;
+}
+.comment-card-head .info{
+  margin-left: 8px;
+}
+.comment-card-head img {
+  width: 40px;
+  height: 40px;
+}
+.comment-card-head .info p:nth-child(2){
+  color: #6A33F8;
+  font-size: 0.875rem;
+}
+.comment-text{
+  margin-top: 8px;
+}
+.top-list ,
+.bottom-list{
+  display: flex;
+}
+.top-list li,
+.bottom-list li {
+  margin-left: 30px;
+}
+.bottom-list {
+  margin-top: 20px;
+}
+
+/*運送方式區塊*/
+.transport {
+  margin-top: 30px;
+}
+.transport-intro {
+  display: flex;
+  justify-content: space-between;  
+  max-width: 700px;
+  text-align: center;
+}
+.transport-icon {
+  width: 115px;
+  height: 115px;
+  border: 3px solid black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.transport-icon span {
+  font-size: 50px;
+}
+.transport-icon + h4 {
+  font-size: 1.25rem;
+}
+.transport-intro li:not(:nth-child(4)){
+  position: relative;
+}
+.transport-intro li:not(:nth-child(4))::after {
+  content: "";
+  position: absolute;
+  top: 48px;
+  right: -55px;
+  border: 10px solid black;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+}
+/*商品展示區塊*/
+.selector {
+  width: 255px;
+  height: 38px;
+  border: 1px solid #CED4DA;
+  color: #818A91;
+  font-weight: bold;
+  margin: 72px 0 32px 0;
+}
+.selector:focus {
+  outline: none;
+}
+.selector option:hover {
+  background-color: #818A91;
+}
+.shop-display .cardWrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.shop-display .card {
+  position: relative;
+  width: 23%;
+  margin-right: 2%;
+  margin-bottom: 28px;
+}
+.shop-display .card span {
+  display: block;
+  width: 88px;
+  height: 44px;
+  background-color: #000000;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 44px;
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+.addCar-btn {
+  background-color: #000000;
+  color: #FFFFFF;
+  display: block;
+  width: 100%;
+  text-align: center;
+  height: 48px;
+  line-height: 48px;
+}
+.addCar-btn:hover {
+  background-color: #301E5F;
+}
+.card-name,
+.origin-price {
+  font-size: 1.15rem;
+}
+.card-name {
+  margin: 8px 0;
+}
+.price {
+  font-size: 1.65rem;
+}
+/*購物車區塊*/
+.shopCar {
+  background-color: #F8F8F8;
+  padding: 60px;
+  margin-top: 60px;
+}
+.shopCar table {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 920px;
+  margin-top: 30px;
+  font-size: 1.25rem;
+  
+}
+.shopCar tbody tr {
+  border-bottom: 1px solid #BFBFBF;
+}
+.shopCar table th,
+.shopCar table td {
+  padding: 15px;
+  vertical-align: middle;
+  text-align: start;
+}
+
+.cardItem-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cardItem-title img {
+  max-width: 80px;
+  margin-right: 15px;
+}
+.del-carBtn a{
+  font-size: 2rem;
+  cursor: pointer;
+}
+.shopCar table td.del-carBtn  { 
+  text-align: end;
+}
+.shopCar table .delAll-btn {
+  display: block;
+  height: 48px;
+  width: 160px;
+  border: 1px solid #000000;
+  text-align: center;
+  line-height: 48px;
+  border-radius: 4px;
+  transition: 0.2s;
+}
+.shopCar table .delAll-btn:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+.total-price {
+  font-size: 1.75rem;
+}
+/*填寫預定資料區塊*/
+.orderInfo{
+  margin-top: 60px;
+}
+.orderInfo-form label {
+  display: block;
+  margin-bottom: 6px;
+}
+.form-group {
+  position: relative;
+  max-width: 365px;
+  margin: 0 auto 15px;
+}
+.input-wrap {
+  position: relative;
+}
+.form-group span{
+  position: absolute;
+  
+  top: 50%;
+  right: -40px;
+  transform: translateY(-50%);
+  color: #C72424;
+}
+.form-group input[type="text"],
+.form-group select
+ {
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid #CED4DA;
+  border-radius: 5px;
+  text-indent: 1rem;
+  margin-right: 10px;
+}
+.sendOrder-btn {
+  display: block;
+  width: 100%;
+  max-width: 255px;
+  min-height: 48px;
+  background-color: #000000;
+  color: #FFFFFF;
+  border: 0;
+  cursor: pointer;
+  font-size: 1.25rem;
+  margin: 50px auto 0;
+  border-radius: 5px;
+}
+/*返回頂部按鈕*/
+.sideNav {
+  position: fixed;
+  right: 0;
+  bottom: 50px;
+}
+.sideNav li {
+  background-color: #e0e0e0; 
+  color: #000000; 
+  padding: 5px 30px;
+  margin-bottom: 5px;
+  
+}

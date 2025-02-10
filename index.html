@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>家具網</title>
+    <!--引入Google Fonts 'Noto Sans'字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fascinate+Inline&family=Noto+Sans+Warang+Citi&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu"
+    />
+    <!-- 引入icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- 引入axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <!-- 重置CSS -->
+    <link rel="stylesheet" href="./CSS/reset.css" />
+    <!-- index.css -->
+    <link rel="stylesheet" href="./CSS/index.css" />
+  </head>
+  <body>
+    <nav class="topBar" data-index="0">
+      <div class="wrap">
+        <h1><a href="#" class="logo">WOWOROOM</a></h1>
+        <span class="menuToggle"> menu </span>
+        <ul class="topBar-menu">
+          <li><a href="#bedAdvantage">床墊優勢</a></li>
+          <li><a href="#recommendation">好評推薦</a></li>
+          <li><a href="#transport">運送方式</a></li>
+          <li><a href="#orderInfo">立即預訂</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class="banner wrap" data-index="1">
+      <div class="carousel">
+        <h2 class="slogan">窩窩家居<br />跟您一起品味生活</h2>
+      </div>
+      <h3 class="advantages section-title">床墊優勢</h3>
+      <ul class="advantages-list">
+        <li>
+          <img src="./res/banner2.png" alt="image2" />
+          <p>原木料環保</p>
+        </li>
+        <li>
+          <img src="./res/banner3.png" alt="image3" />
+          <p>原木料環保</p>
+        </li>
+        <li>
+          <img src="./res/banner4.png" alt="image4" />
+          <p>原木料環保</p>
+        </li>
+      </ul>
+    </section>
+    <section class="commodityCompare" data-index="2">
+      <div class="wrap overflowWrap">
+        <h3 class="section-title">家具比較</h3>
+        <table class="compareTable">
+          <thead>
+            <tr>
+              <th></th>
+              <th>窩窩系統模組家具</th>
+              <th class="textMuted">組合式家具</th>
+              <th class="textMuted">實木家具</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>可單人自行組裝</td>
+              <td>
+                <span class="material-symbols-outlined checkIcon">check</span>
+              </td>
+              <td class="textMuted">不一定</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>可多次重複拆裝</td>
+              <td>
+                <span class="material-symbols-outlined checkIcon">check</span>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>床墊規格彈性大</td>
+              <td>
+                <span class="material-symbols-outlined checkIcon">check</span>
+              </td>
+              <td class="textMuted">不一定</td>
+              <td class="textMuted">不一定</td>
+            </tr>
+            <tr>
+              <td>材質可長久使用</td>
+              <td>
+                <span class="material-symbols-outlined checkIcon">check</span>
+              </td>
+              <td></td>
+              <td>
+                <span class="material-symbols-outlined checkIcon">check</span>
+              </td>
+            </tr>
+            <tr>
+              <td>小可車即可搬運</td>
+              <td>
+                <span class="material-symbols-outlined checkIcon">check</span>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="comment" data-index="3">
+      <div class="wrap comment-list">
+        <h3 class="section-title">好評推薦</h3>
+        <ul class="top-list">
+          <li class="comment-card">
+            <img src="./res/comment-commodity1.png" alt="" />
+            <div class="comment-content">
+              <div class="comment-card-head">
+                <img src="./res/comment-user1.png" alt="" />
+                <div class="info">
+                  <p>王小偉</p>
+                  <p>Antony雙人床架</p>
+                </div>
+              </div>
+              <p class="comment-text">CP值很高。</p>
+            </div>
+          </li>
+          <li class="comment-card">
+            <img src="./res/comment-commodity2.png" alt="" />
+            <div class="comment-content">
+              <div class="comment-card-head">
+                <img src="./res/comment-user2.png" alt="" />
+                <div class="info">
+                  <p>王小偉</p>
+                  <p>Antony雙人床架</p>
+                </div>
+              </div>
+              <p class="comment-text">很喜歡~還有送三年保固</p>
+            </div>
+          </li>
+          <li class="comment-card">
+            <img src="./res/comment-commodity3.png" alt="" />
+            <div class="comment-content">
+              <div class="comment-card-head">
+                <img src="./res/comment-user3.png" alt="" />
+                <div class="info">
+                  <p>王小偉</p>
+                  <p>Antony雙人床架</p>
+                </div>
+              </div>
+              <p class="comment-text">廚房必備美用品</p>
+            </div>
+          </li>
+        </ul>
+        <ul class="bottom-list">
+          <li class="comment-card">
+            <img src="./res/comment-commodity2.png" alt="" />
+            <div class="comment-content">
+              <div class="comment-card-head">
+                <img src="./res/comment-user4.png" alt="" />
+                <div class="info">
+                  <p>王小偉</p>
+                  <p>Antony雙人床架</p>
+                </div>
+              </div>
+              <p class="comment-text">非常舒適，有需要會再回購</p>
+            </div>
+          </li>
+          <li class="comment-card">
+            <img src="./res/comment-commodity4.png" alt="" />
+            <div class="comment-content">
+              <div class="comment-card-head">
+                <img src="./res/comment-user5.png" alt="" />
+                <div class="info">
+                  <p>王小偉</p>
+                  <p>Antony雙人床架</p>
+                </div>
+              </div>
+              <p class="comment-text">品質還不錯！</p>
+            </div>
+          </li>
+          <li class="comment-card">
+            <img src="./res/comment-commodity5.png" alt="" />
+            <div class="comment-content">
+              <div class="comment-card-head">
+                <img src="./res/comment-user6.png" alt="" />
+                <div class="info">
+                  <p>王小偉</p>
+                  <p>Antony雙人床架</p>
+                </div>
+              </div>
+              <p class="comment-text">超讚啦！</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="transport" data-index="4">
+      <h3 class="section-title">運送方式</h3>
+      <ul class="transport-intro wrap">
+        <li>
+          <div class="transport-icon">
+            <span class="material-icons"> shopping_cart </span>
+          </div>
+          <h4>STEP.1</h4>
+          <p>選購商品</p>
+        </li>
+        <li>
+          <div class="transport-icon">
+            <span class="material-symbols-outlined">
+              format_list_bulleted
+            </span>
+          </div>
+          <h4>STEP.2</h4>
+          <p>填寫預定資料</p>
+        </li>
+        <li>
+          <div class="transport-icon">
+            <span class="material-symbols-outlined"> check </span>
+          </div>
+          <h4>STEP.3</h4>
+          <p>預定成功</p>
+        </li>
+        <li>
+          <div class="transport-icon">
+            <span class="material-icons"> email </span>
+          </div>
+          <h4>STEP.4</h4>
+          <p>Email付款資訊</p>
+        </li>
+      </ul>
+    </section>
+    <section class="shop-display wrap" data-index="5">
+      <select name="" class="selector">
+        <option value="全部" selected>全部</option>
+        <option value="床架">床架</option>
+        <option value="收納">收納</option>
+        <option value="窗簾">窗簾</option>
+      </select>
+      <ul class="cardWrap">
+        <!-- <li class="card">
+          <span>新品</span>
+          <img src="./res/comodity1.png" alt="商品圖" />
+          <a href="" class="addCar-btn">加入購物車</a>
+          <p class="card-name">Antony雙人床架/雙人加大</p>
+          <p><del class="origin-price">NT$18,000</del></p>
+          <p class="price">NT$12,000</p>
+        </li>
+        <li class="card">
+          <span>新品</span>
+          <img src="./res/comodity1.png" alt="商品圖" />
+          <a href="" class="addCar-btn">加入購物車</a>
+          <p class="card-name">Antony雙人床架/雙人加大</p>
+          <p><del class="origin-price">NT$18,000</del></p>
+          <p class="price">NT$12,000</p>
+        </li>
+        <li class="card">
+          <span>新品</span>
+          <img src="./res/comodity1.png" alt="商品圖" />
+          <a href="" class="addCar-btn">加入購物車</a>
+          <p class="card-name">Antony雙人床架/雙人加大</p>
+          <p><del class="origin-price">NT$18,000</del></p>
+          <p class="price">NT$12,000</p>
+        </li>
+        <li class="card">
+          <span>新品</span>
+          <img src="./res/comodity1.png" alt="商品圖" />
+          <a href="" class="addCar-btn">加入購物車</a>
+          <p class="card-name">Antony雙人床架/雙人加大</p>
+          <p><del class="origin-price">NT$18,000</del></p>
+          <p class="price">NT$12,000</p>
+        </li> -->
+        <img
+          src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXF2MXlzejViZTdpanR1aGtrbTFzd3BucmN4Z3NsdWh6NG1zajF1ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y1ZBcOGOOtlpC/giphy.gif"
+          alt=""
+        />
+      </ul>
+    </section>
+    <section class="shopCar" data-index="6">
+      <h3>我的購物車</h3>
+      <div class="overflowWrap">
+        <table>
+          <thead>
+            <tr>
+              <th width="40%">商品</th>
+              <th width="15%">單價</th>
+              <th width="15%">數量</th>
+              <th width="15%">金額</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="cardItem-title">
+                  <img src="./res/comodity1.png" alt="" />
+                  <p>Antony雙人床價/雙人加大</p>
+                </div>
+              </td>
+              <td>NT$12,000</td>
+              <td>1</td>
+              <td>NT$12,000</td>
+              <td class="del-carBtn">
+                <a class="material-symbols-outlined"> close </a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cardItem-title">
+                  <img src="./res/comodity1.png" alt="" />
+                  <p>Antony雙人床價/雙人加大</p>
+                </div>
+              </td>
+              <td>NT$12,000</td>
+              <td>1</td>
+              <td>NT$12,000</td>
+              <td class="del-carBtn">
+                <a class="material-symbols-outlined"> close </a>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>
+                <a href="" class="delAll-btn">刪除所有品項</a>
+              </td>
+              <td></td>
+              <td></td>
+              <td>總金額</td>
+              <td class="total-price">NT$13980</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+    <section class="orderInfo wrap" data-index="7">
+      <h3>填寫預定資料</h3>
+      <form action="" class="orderInfo-form">
+        <div class="form-group">
+          <label for="bookName">姓名</label>
+          <div class="input-wrap">
+            <input
+              type="text"
+              placeholder="請輸入姓名"
+              id="bookName"
+              autocomplete="off"
+            />
+            <span>必填</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="bookPhone">電話</label>
+          <div class="input-wrap">
+            <input
+              type="text"
+              placeholder="請輸入電話"
+              id="bookPhone"
+              autocomplete="off"
+            />
+            <span>必填</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="bookEmail">Email</label>
+          <div class="input-wrap">
+            <input
+              type="text"
+              placeholder="請輸入Email"
+              id="bookEmail"
+              autocomplete="off"
+            />
+            <span>必填</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="bookAddress">寄送地址</label>
+          <div class="input-wrap">
+            <input
+              type="text"
+              placeholder="請輸入寄送地址"
+              id="bookAddress"
+              autocomplete="off"
+            /><span>必填</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pay-method">交易方式</label>
+          <select name="pay-method" id="pay-method">
+            <option value="1">ATM</option>
+            <option value="2 ">信用卡</option>
+            <option value="3">超商付款</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="sendOrder-btn">送出預定資料</button>
+        </div>
+      </form>
+    </section>
+    <ul class="sideNav">
+      <li data-index="3">好評推薦</li>
+      <li data-index="5">選購商品</li>
+      <li data-index="6">購物車</li>
+      <li data-index="0">返回頂部</li>
+    </ul>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="./JS/config.js"></script>
+    <script src="./JS/index.js"></script>
+    <script src="./JS/index-animation.js"></script>
+  </body>
+</html>
