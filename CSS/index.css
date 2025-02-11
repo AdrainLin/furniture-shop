@@ -81,6 +81,7 @@ h3 {
 .advantages-list p {
   text-align: center;
   margin-top: 8px;
+  font-size: 1.25rem;
 }
 
 /*商品比較區塊*/
@@ -299,8 +300,8 @@ h3 {
 
 .cardItem-title {
   display: flex;
-  justify-content: center;
   align-items: center;
+  width: 100%;
 }
 .cardItem-title img {
   max-width: 80px;
@@ -388,5 +389,5 @@ h3 {
   color: #000000; 
   padding: 5px 30px;
   margin-bottom: 5px;
-  
+  cursor: pointer;
 }
