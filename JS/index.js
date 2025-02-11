@@ -61,7 +61,7 @@ cardList.addEventListener("click",function(e){
   e.preventDefault()
   if(!e.target.classList.contains("addCar-btn")) return
   let productId = e.target.dataset.id
-  console.log(productId)
+  
   let num = 1 
   carData.forEach(item => {
     if(productId === item.product.id){
@@ -89,7 +89,7 @@ function getcarList() {
     .then(res => {
       
       carData = res.data.carts
-      console.log(res)
+      
       if(carData.length == 0) {
         carTbody.innerHTML = `<tr><td>暫時還沒有商品,再去逛逛吧</td></tr>`
         finalTotal.innerHTML = `NT$0`
@@ -148,6 +148,57 @@ delAllBtn.addEventListener("click",function(e){
     })
     
     
+})
+//--前端表單驗證--//
+
+const orederInfoBtn = document.querySelector(".sendOrder-btn")
+const orderInfoForm = document.querySelector(".orderInfo-form")
+const bookName = orderInfoForm.querySelector("[name=bookName]")
+const bookPhone = orderInfoForm.querySelector("[name=bookPhone]")
+const bookEmail = orderInfoForm.querySelector("[name=bookEmail]")
+const bookAddress = orderInfoForm.querySelector("[name=bookAddress]")
+
+orederInfoBtn.addEventListener("click", function (e) {
+  e.preventDefault()
+  const isValid = verify(bookName.value, bookPhone.value, bookEmail.value, bookAddress.value)
+  if (!isValid) return
+  orderInfoForm.reset()
+  alert("送出成功")
+})
+function verify(bookNameV, bookPhoneV, bookEmailV, bookAddressV) {
+
+  const emailRex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const phoneRex = /^09[0-9]{8}$/
+
+  // 檢查購物車是否有商品
+  if (carData.length === 0) {
+    alert("購物車內沒有商品");
+    return false;
+  }
+  // 檢查欄位是否空白
+  if (!bookNameV || !bookPhoneV || !bookEmailV || !bookAddressV) {
+    alert("請填寫完整資料");
+    return false; 
+  }
+  // 驗證手機格式
+  if (!phoneRex.test(bookPhoneV)) {
+    alert("手機格式有誤喔");
+    return false;
+  }
+  // 驗證email格式
+  if (!emailRex.test(bookEmailV)) {
+    alert("email格式有誤喔");
+    return false;
+  }
+  return true;
+}
+//去除空白
+orderInfoForm.querySelectorAll("input").forEach(item => {
+  item.addEventListener("input",function(e){
+    setTimeout(() => {
+      e.target.value = e.target.value.replace(/\s+/g,"")
+    },120)
+  })
 })
 
 //--側邊導航欄--//
