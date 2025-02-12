@@ -52,6 +52,22 @@ productSelect.addEventListener("change",function(e){
   let dataAry = productData.filter(item => item.category === category)
   cardList.innerHTML = combineProductHTMLItem(dataAry)
 })
+//--吐司提示訊息--//
+const toast = document.querySelector("#toast");
+const toastMsg = toast.querySelector("span");
+let toastTimeout;
+function showToast(msg) {
+  toastMsg.textContent = msg
+  toast.classList.add("show");
+  if (toastTimeout) {
+    clearTimeout(toastTimeout);
+  }
+  toastTimeout = setTimeout(hideToast, 1500);
+}
+
+function hideToast() {
+  toast.classList.remove("show");
+}
 
 //--購物車-加入--//
 const carTbody = document.querySelector(".shopCar-table tbody")
@@ -59,9 +75,11 @@ let carData
 
 cardList.addEventListener("click",function(e){
   e.preventDefault()
+
   if(!e.target.classList.contains("addCar-btn")) return
+  showToast("成功加入購物車")
+
   let productId = e.target.dataset.id
-  
   let num = 1 
   carData.forEach(item => {
     if(productId === item.product.id){
@@ -77,7 +95,9 @@ cardList.addEventListener("click",function(e){
     .post(`https://livejs-api.hexschool.io/api/livejs/v1/customer/${apiPath}/carts`,body)
     .then(res => {
       getcarList()
-      alert("加入購物")
+    })
+    .catch(e => {
+      showToast("出現了一點問題,請稍後再重新加入")
     })
 })
 
@@ -126,11 +146,14 @@ carTbody.addEventListener("click",function(e){
   e.preventDefault()
   const carId = e.target.dataset.id
   if(!carId) return
+  showToast("成功刪除訂單")
   axios
     .delete(`https://livejs-api.hexschool.io/api/livejs/v1/customer/${apiPath}/carts/${carId}`)
     .then(res => {
       getcarList()
-      alert("刪除成功")
+    })
+    .catch(e => {
+      showToast("出現了一點問題,請稍後再刪除訂單")
     })
 })
 
@@ -138,16 +161,18 @@ carTbody.addEventListener("click",function(e){
 const delAllBtn = document.querySelector(".delAll-btn") 
 delAllBtn.addEventListener("click",function(e){
   e.preventDefault()
+  if(carData.length) showToast("成功清空購物車")
   axios
     .delete(`https://livejs-api.hexschool.io/api/livejs/v1/customer/${apiPath}/carts`)
     .then(res => {
-      alert("清空購物車")
       getcarList()
     }).catch(e => {
-      alert("購物車已清空嚕,再去逛逛吧")
+      if(carData.length == 0){
+        showToast("購物車內沒有商品! 再去逛逛吧")
+      }else{
+        showToast("出現了一點問題,稍後再試看看")
+      }
     })
-    
-    
 })
 //--前端表單驗證--//
 
@@ -160,37 +185,44 @@ const bookAddress = orderInfoForm.querySelector("[name=bookAddress]")
 
 orederInfoBtn.addEventListener("click", function (e) {
   e.preventDefault()
-  const isValid = verify(bookName.value, bookPhone.value, bookEmail.value, bookAddress.value)
-  if (!isValid) return
-  orderInfoForm.reset()
-  alert("送出成功")
+  const orderInfo = {
+    name:bookName.value,
+    phone:bookPhone.value,
+    email:bookEmail.value,
+    address:bookAddress.value
+  }
+  //回傳0表示驗證通過
+  let errMsg = verify(orderInfo,carData)
+  if(errMsg){
+    showToast(errMsg)
+  }else {
+    orderInfoForm.reset()
+    showToast("訂單已成功送出!")
+  }
 })
-function verify(bookNameV, bookPhoneV, bookEmailV, bookAddressV) {
-
-  const emailRex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  const phoneRex = /^09[0-9]{8}$/
+//驗證mail格式
+function isValidEmail(email) {
+  const emailRex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRex.test(email);
+}
+//驗證手機格式
+function isValidPhone(phone) {
+  const phoneRex = /^09[0-9]{8}$/;
+  return phoneRex.test(phone);
+}
+//驗證表單
+function verify({name,phone,email,address},carData) {
 
   // 檢查購物車是否有商品
-  if (carData.length === 0) {
-    alert("購物車內沒有商品");
-    return false;
-  }
+  if (carData.length === 0) return "購物車內沒有商品"
   // 檢查欄位是否空白
-  if (!bookNameV || !bookPhoneV || !bookEmailV || !bookAddressV) {
-    alert("請填寫完整資料");
-    return false; 
-  }
+  if (!name || !phone || !email || !address) return "請填寫完整資料"
   // 驗證手機格式
-  if (!phoneRex.test(bookPhoneV)) {
-    alert("手機格式有誤喔");
-    return false;
-  }
+  if (!isValidPhone(phone)) return "手機格式有誤喔"
   // 驗證email格式
-  if (!emailRex.test(bookEmailV)) {
-    alert("email格式有誤喔");
-    return false;
-  }
-  return true;
+  if (!isValidEmail(email)) return "email格式有誤喔"
+  
+  return 0;
 }
 //去除空白
 orderInfoForm.querySelectorAll("input").forEach(item => {
@@ -216,11 +248,7 @@ sideNav.addEventListener('click',function(e){
   }
   scrollYAnimate(window,targetBlock.offsetTop)
 })
-sideNav.addEventListener('mouseover',function(e){
-  if(e.target.tagName === 'LI') {
-   
-  }
-})
+
 //側邊導航欄-滑動動畫
 function scrollYAnimate(obj,target,callback){
   clearInterval(obj.timer)

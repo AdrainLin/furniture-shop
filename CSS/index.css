@@ -382,12 +382,40 @@ h3 {
 .sideNav {
   position: fixed;
   right: 0;
-  bottom: 50px;
+  top: 50%;
 }
 .sideNav li {
   background-color: #e0e0e0; 
   color: #000000; 
   padding: 5px 30px;
   margin-bottom: 5px;
+  cursor: pointer;
+}
+/*吐司提示訊息*/
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #333;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 5px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+  z-index: 1000;
+  font-size: 1.25rem;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* 關閉按鈕 */
+.toast .close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.25rem;
+  margin-left: 15px;
   cursor: pointer;
 }
