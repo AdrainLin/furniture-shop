@@ -162,6 +162,10 @@ const delAllBtn = document.querySelector(".delAll-btn")
 delAllBtn.addEventListener("click",function(e){
   e.preventDefault()
   if(carData.length) showToast("成功清空購物車")
+  clearCar()
+})
+//清空購物車
+function clearCar() {
   axios
     .delete(`https://livejs-api.hexschool.io/api/livejs/v1/customer/${apiPath}/carts`)
     .then(res => {
@@ -173,7 +177,8 @@ delAllBtn.addEventListener("click",function(e){
         showToast("出現了一點問題,稍後再試看看")
       }
     })
-})
+}
+
 //--前端表單驗證--//
 
 const orederInfoBtn = document.querySelector(".sendOrder-btn")
@@ -182,6 +187,7 @@ const bookName = orderInfoForm.querySelector("[name=bookName]")
 const bookPhone = orderInfoForm.querySelector("[name=bookPhone]")
 const bookEmail = orderInfoForm.querySelector("[name=bookEmail]")
 const bookAddress = orderInfoForm.querySelector("[name=bookAddress]")
+const bookPayment = orderInfoForm.querySelector("[name=payMethod]")
 
 orederInfoBtn.addEventListener("click", function (e) {
   e.preventDefault()
@@ -189,26 +195,51 @@ orederInfoBtn.addEventListener("click", function (e) {
     name:bookName.value,
     phone:bookPhone.value,
     email:bookEmail.value,
-    address:bookAddress.value
+    address:bookAddress.value,
+    payment:bookPayment.value
   }
   //回傳0表示驗證通過
   let errMsg = verify(orderInfo,carData)
   if(errMsg){
     showToast(errMsg)
   }else {
-    orderInfoForm.reset()
-    showToast("訂單已成功送出!")
+    sendOrder(orderInfo)
   }
 })
+//送出訂單
+function sendOrder({phone,...otherInfo}) {
+  otherInfo.tel = orderInfo.phone
+  const postData = {
+    data:{
+      user:otherInfo
+    }
+  }
+  axios
+    .post(`https://livejs-api.hexschool.io/api/livejs/v1/customer/${apiPath}/orders`,postData)
+    .then(res => {
+      showToast("訂單建立成功")
+      orderInfoForm.reset()
+      getcarList()
+    })
+    .catch(e => {
+      console.log(e)
+    })
+}
 //驗證mail格式
 function isValidEmail(email) {
-  const emailRex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRex.test(email);
+  const emailRex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRex.test(email)
 }
 //驗證手機格式
 function isValidPhone(phone) {
-  const phoneRex = /^09[0-9]{8}$/;
-  return phoneRex.test(phone);
+  const phoneRex = /^09[0-9]{8}$/
+  return phoneRex.test(phone)
+}
+//驗證地址格式
+function isValidAddress(address) {
+  //僅匹配漢字或數字,排除特殊符號,限制長度為5-100
+  const addressRex = /^[\p{Script=Han}\p{Number}]{5,100}$/u
+  return addressRex.test(address)
 }
 //驗證表單
 function verify({name,phone,email,address},carData) {
@@ -221,7 +252,9 @@ function verify({name,phone,email,address},carData) {
   if (!isValidPhone(phone)) return "手機格式有誤喔"
   // 驗證email格式
   if (!isValidEmail(email)) return "email格式有誤喔"
-  
+  // 驗證地址格式
+  if (!isValidAddress(address)) return "地址格式有誤喔"
+
   return 0;
 }
 //去除空白

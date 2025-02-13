@@ -378,6 +378,9 @@ h3 {
   margin: 50px auto 0;
   border-radius: 5px;
 }
+.sendOrder-btn:hover {
+  background-color: #301E5F;
+}
 /*返回頂部按鈕*/
 .sideNav {
   position: fixed;
