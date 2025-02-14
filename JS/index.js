@@ -208,7 +208,7 @@ orederInfoBtn.addEventListener("click", function (e) {
 })
 //送出訂單
 function sendOrder({phone,...otherInfo}) {
-  otherInfo.tel = orderInfo.phone
+  otherInfo.tel = phone
   const postData = {
     data:{
       user:otherInfo

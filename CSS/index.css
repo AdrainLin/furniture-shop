@@ -384,15 +384,21 @@ h3 {
 /*返回頂部按鈕*/
 .sideNav {
   position: fixed;
-  right: 0;
+  right: -15px;
   top: 50%;
 }
 .sideNav li {
   background-color: #e0e0e0; 
   color: #000000; 
   padding: 5px 30px;
+  padding-right: 45px;
   margin-bottom: 5px;
   cursor: pointer;
+  transition: 0.2s;
+}
+.sideNav li:hover {
+  transform: translateX(-15px);
+  
 }
 /*吐司提示訊息*/
 .toast {
