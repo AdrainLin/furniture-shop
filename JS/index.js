@@ -23,14 +23,16 @@ function getProductList() {
 //--組商品清單字串--//
 function combineProductHTMLItem(dataAry){
   let str = dataAry.map(item => {
+    let origin_price = thousandsSeparator(item.origin_price)
+    let price = thousandsSeparator(item.price)
     return `
       <li class="card">
         <span>新品</span>
         <img src="${item.images}" alt="商品圖" />
         <a href="" class="addCar-btn" data-id="${item.id}">加入購物車</a>
         <p class="card-name">${item.title}</p>
-        <p><del class="origin-price">NT$${item.origin_price}</del></p>
-        <p class="price">NT$${item.price}</p>
+        <p><del class="origin-price">NT$${origin_price}</del></p>
+        <p class="price">NT$${price}</p>
       </li>
     `
   }).join("")
@@ -120,6 +122,10 @@ function getcarList() {
         let product = item.product
         let carId = item.id
         let {images,title,price} = product
+        let productTotal = price * quantity
+        productTotal = thousandsSeparator(productTotal)
+        price = thousandsSeparator(price)
+        
         return `
           <tr>
             <td>
@@ -130,14 +136,14 @@ function getcarList() {
             </td>
             <td>NT$${price}</td>
             <td>${quantity}</td>
-            <td>NT$${price*quantity}</td>
+            <td>NT$${productTotal}</td>
             <td class="del-carBtn">
               <a class="material-symbols-outlined" data-id=${carId}> close </a>
             </td>
           </tr>
         `
       }).join("")
-      finalTotal.innerHTML = `NT$${res.data.finalTotal}`
+      finalTotal.innerHTML = `NT$${thousandsSeparator(res.data.finalTotal)}`
     })
 }
 
@@ -296,4 +302,9 @@ function scrollYAnimate(obj,target,callback){
         callback && callback()
        }
   },12)
+}
+
+//--轉換數字格式(千分位)--//
+function thousandsSeparator(num,locale="zh-TW",decimal=2) {
+  return num.toLocaleString(locale,{maximumFractionDigits:decimal})
 }
