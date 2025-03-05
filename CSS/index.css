@@ -46,10 +46,6 @@ h3 {
   border-bottom: 40px solid #000000;
   margin-bottom: 30px;
 }
-.topBar a:hover{
-  color: #6A33F8;
-}
-
 .topBar .wrap {
   display: flex;
   justify-content: space-between;
@@ -236,9 +232,6 @@ h3 {
 .selector:focus {
   outline: none;
 }
-.selector option:hover {
-  background-color: #818A91;
-}
 .shop-display .cardWrap {
   display: flex;
   flex-wrap: wrap;
@@ -269,9 +262,6 @@ h3 {
   text-align: center;
   height: 48px;
   line-height: 48px;
-}
-.addCar-btn:hover {
-  background-color: #301E5F;
 }
 .card-name,
 .origin-price {
@@ -304,7 +294,7 @@ h3 {
   padding: 15px;
   vertical-align: middle;
   text-align: start;
-  min-width: 55px;
+  min-width: 80px;
   box-sizing: border-box;
 }
 
@@ -333,10 +323,6 @@ h3 {
   line-height: 48px;
   border-radius: 4px;
   transition: 0.2s;
-}
-.shopCar table .delAll-btn:hover {
-  background-color: #000000;
-  color: #FFFFFF;
 }
 .total-price {
   font-size: 1.75rem;
@@ -388,9 +374,6 @@ h3 {
   margin: 50px auto 0;
   border-radius: 5px;
 }
-.sendOrder-btn:hover {
-  background-color: #301E5F;
-}
 /*返回頂部按鈕*/
 .sideNav {
   position: fixed;
@@ -406,10 +389,6 @@ h3 {
   margin-bottom: 5px;
   cursor: pointer;
   transition: 0.2s;
-}
-.sideNav li:hover {
-  transform: translateX(-15px);
-  
 }
 /*吐司提示訊息*/
 .toast {
@@ -488,10 +467,6 @@ footer .link-box {
   opacity: 0.3;
   z-index: 2;
 }
-footer .link-box > a:hover {
-  transform: scale(1.1);
-  transition: .3s;
-}
 @media (max-width:1199px) {
   .sideNav {
     display:none;
@@ -538,7 +513,7 @@ footer .link-box > a:hover {
   }
   .shopCar table th,
   .shopCar table td {
-    padding: 10px;
+    padding: 10px 0;
   }
 }
 @media (max-width:575px) {
@@ -577,5 +552,35 @@ footer .link-box > a:hover {
   .form-group input[type="text"],
   .form-group select {
     margin-right: 0;
+  }
+}
+@media (hover : hover) {
+  .addCar-btn:hover,
+  .sendOrder-btn:hover {
+    background-color: #301E5F;
+  }
+  .shopCar table .delAll-btn:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+  }
+  .topBar a:hover{
+    color: #6A33F8;
+  }
+  footer .link-box > a:hover {
+    transform: scale(1.1);
+    transition: .3s;
+  }
+  .sideNav li:hover {
+    transform: translateX(-15px);
+  }
+}
+@media (hover: none) {
+  .addCar-btn.active,
+  .sendOrder-btn.active {
+    background-color: #301E5F;
+  }
+  .shopCar table .delAll-btn.active {
+    background-color: #000000;
+    color: #FFFFFF;
   }
 }

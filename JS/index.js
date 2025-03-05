@@ -77,10 +77,9 @@ let carData
 
 cardList.addEventListener("click",function(e){
   e.preventDefault()
-
+  
   if(!e.target.classList.contains("addCar-btn")) return
   showToast("成功加入購物車")
-
   let productId = e.target.dataset.id
   let num = 1 
   carData.forEach(item => {
@@ -187,7 +186,7 @@ function clearCar() {
 
 //--前端表單驗證--//
 
-const orederInfoBtn = document.querySelector(".sendOrder-btn")
+const orderInfoBtn = document.querySelector(".sendOrder-btn")
 const orderInfoForm = document.querySelector(".orderInfo-form")
 const bookName = orderInfoForm.querySelector("[name=bookName]")
 const bookPhone = orderInfoForm.querySelector("[name=bookPhone]")
@@ -195,7 +194,7 @@ const bookEmail = orderInfoForm.querySelector("[name=bookEmail]")
 const bookAddress = orderInfoForm.querySelector("[name=bookAddress]")
 const bookPayment = orderInfoForm.querySelector("[name=payMethod]")
 
-orederInfoBtn.addEventListener("click", function (e) {
+orderInfoBtn.addEventListener("click", function (e) {
   e.preventDefault()
   const orderInfo = {
     name:bookName.value,
@@ -308,3 +307,30 @@ function scrollYAnimate(obj,target,callback){
 function thousandsSeparator(num,locale="zh-TW",decimal=2) {
   return num.toLocaleString(locale,{maximumFractionDigits:decimal})
 }
+
+//-手機端按鈕效果-//
+
+cardList.addEventListener("click", e => {
+  e.preventDefault()
+  e.stopPropagation()
+
+  if (e.target.classList.contains("addCar-btn")) {
+    e.target.classList.add("active")
+    setTimeout(() => {
+      e.target.classList.remove("active")
+    }, 150)
+  }
+});
+
+function clickEffectHandler (e) {
+  e.preventDefault()
+  this.classList.add("active")
+  setTimeout(() => {
+    this.classList.remove("active");
+  }, 150);
+}
+const buttons = [delAllBtn,orderInfoBtn]
+
+buttons.forEach(btn => {
+  btn.addEventListener("click",clickEffectHandler)  
+})
